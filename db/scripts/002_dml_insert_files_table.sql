@@ -1,0 +1,1 @@
+INSERT INTO files (name, path) VALUES ('Гадкий Я', 'files/Гадкий Я.jpg');
