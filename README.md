@@ -41,3 +41,21 @@
 ## Контакты
 - Email: selove.jara@gmail.com
 - Telegram: https://t.me/Moroz_koo
+
+
+## Фото проекта
+
+<table>
+  <tr>
+    <td><img src="images/Вход.png" width="400"/></td>
+    <td><img src="images/Кинотека.png" width="400"/></td>
+  </tr>
+  <tr>
+    <td><img src="images/Сеансы.png" width="400"/></td>
+    <td><img src="images/Форма покупки.png" width="400"/></td>
+  </tr>
+  <tr>
+    <td><img src="images/Покупка билета.png" width="400"/></td>
+    <td><img src="images/Неудача покупки.png" width="400"/></td>
+  </tr>
+</table>
