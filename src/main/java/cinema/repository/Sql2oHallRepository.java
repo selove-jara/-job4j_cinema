@@ -1,12 +1,13 @@
 package cinema.repository;
 
-import cinema.model.Genre;
 import cinema.model.Hall;
+import org.springframework.stereotype.Repository;
 import org.sql2o.Sql2o;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class Sql2oHallRepository implements HallRepository {
 
     private final Sql2o sql2o;
@@ -18,7 +19,11 @@ public class Sql2oHallRepository implements HallRepository {
     @Override
     public Optional<Hall> findById(int id) {
         try (var connection = sql2o.open()) {
-            var query = connection.createQuery("SELECT * FROM halls WHERE id = :id");
+            var query = connection.createQuery("""
+                    SELECT id, name, row_count AS rowCount, place_count AS placeCount, description 
+                    FROM halls WHERE id = :id 
+                    """);
+
             var hall = query.addParameter("id", id).executeAndFetchFirst(Hall.class);
             return Optional.ofNullable(hall);
         }
@@ -27,7 +32,7 @@ public class Sql2oHallRepository implements HallRepository {
     @Override
     public List<Hall> findAll() {
         try (var connection = sql2o.open()) {
-            var query = connection.createQuery("SELECT * FROM halls");
+            var query = connection.createQuery("SELECT id, name, row_count AS rowCount, place_count AS placeCount, description FROM halls");
             return query.executeAndFetch(Hall.class);
         }
     }

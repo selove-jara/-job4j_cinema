@@ -1,13 +1,11 @@
-package cinema.repository;
+package cinema.service;
 
 import cinema.model.Ticket;
-import cinema.model.User;
 
 import java.util.Collection;
 import java.util.Optional;
 
-public interface TicketRepository {
-
+public interface TicketService {
     Optional<Ticket> save(Ticket ticket);
 
     void deleteById(int id);

@@ -1,48 +1,52 @@
-package cinema.model;
+package cinema.dto;
+
+import cinema.model.File;
+import cinema.model.Film;
+import cinema.model.Genre;
 
 import java.util.Objects;
-import java.util.Map;
 
-public class Film {
-
-    public static final Map<String, String> COLUMN_MAPPING = Map.of(
-            "id", "id",
-            "name", "name",
-            "description", "description",
-            "year", "year",
-            "genre_id", "genreId",
-            "minimal_age", "minimalAge",
-            "duration_in_minutes", "durationInMinutes",
-            "file_id", "fileId"
-    );
+public class FilmDto {
 
     private int id;
-
     private String name;
-
     private String description;
-
     private int year;
-
-    private int genreId;
-
     private int minimalAge;
-
     private int durationInMinutes;
-
+    private String genre;
     private int fileId;
 
-    public Film() {
+    public FilmDto() {
     }
 
-    public Film(int id, String name, String description, int year, int genreId, int minimalAge, int durationInMinutes, int fileId) {
+    public FilmDto(int id, String name, String description, int year, int minimalAge, int durationInMinutes, String genre, int fileId) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.year = year;
-        this.genreId = genreId;
         this.minimalAge = minimalAge;
         this.durationInMinutes = durationInMinutes;
+        this.genre = genre;
+        this.fileId = fileId;
+    }
+
+    public FilmDto(Film film, Genre genre, File file) {
+        this.id = film.getId();
+        this.name = film.getName();
+        this.description = film.getDescription();
+        this.year = film.getYear();
+        this.minimalAge = film.getMinimalAge();
+        this.durationInMinutes = film.getDurationInMinutes();
+        this.genre = genre.getName();
+        this.fileId = file.getId();
+    }
+
+    public int getFileId() {
+        return fileId;
+    }
+
+    public void setFileId(int fileId) {
         this.fileId = fileId;
     }
 
@@ -78,14 +82,6 @@ public class Film {
         this.year = year;
     }
 
-    public int getGenreId() {
-        return genreId;
-    }
-
-    public void setGenreId(int genreId) {
-        this.genreId = genreId;
-    }
-
     public int getMinimalAge() {
         return minimalAge;
     }
@@ -102,12 +98,12 @@ public class Film {
         this.durationInMinutes = durationInMinutes;
     }
 
-    public int getFileId() {
-        return fileId;
+    public String getGenre() {
+        return genre;
     }
 
-    public void setFileId(int fileId) {
-        this.fileId = fileId;
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     @Override
@@ -118,8 +114,8 @@ public class Film {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Film film = (Film) o;
-        return Objects.equals(id, film.id);
+        FilmDto filmDto = (FilmDto) o;
+        return id == filmDto.id;
     }
 
     @Override

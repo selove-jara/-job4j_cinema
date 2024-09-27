@@ -1,12 +1,13 @@
 package cinema.repository;
 
-import cinema.model.Film;
 import cinema.model.Genre;
+import org.springframework.stereotype.Repository;
 import org.sql2o.Sql2o;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class Sql2oGenreRepository implements GenreRepository {
 
     private final Sql2o sql2o;
